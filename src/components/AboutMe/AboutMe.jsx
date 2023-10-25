@@ -1,20 +1,20 @@
 import { Link } from 'react-router-dom';
-import '../AboutMe/AboutMe.css';
-import AboutMeImage from '../../images/AbouteMeImg.png';
+import './AboutMe.css';
+import aboutMeImage from '../../images/AbouteMeImg.png';
 
 export function AboutMe() {
     return (
-        <section className="aboutMe">
-            <div className="aboutMe__title-container">
-                <h2 className="aboutMe__title">Студент</h2>
+        <section className="about-me">
+            <div className="about-me__title-container">
+                <h2 className="about-me__title">Студент</h2>
             </div>
-            <div className="aboutMe__content">
-                <div className="aboutMe__text-container">
-                    <h3 className="aboutMe__name">Максим</h3>
-                    <p className="aboutMe__subtitle">
+            <div className="about-me__content">
+                <div className="about-me__text-container">
+                    <h3 className="about-me__name">Максим</h3>
+                    <p className="about-me__subtitle">
                         Фронтенд-разработчик, 23 года
                     </p>
-                    <p className="aboutMe__text">
+                    <p className="about-me__text">
                         Я родился и живу в Воскресенске, закончил факультет
                         Информационной Безопасности в НИУ МЭИ. Я люблю слушать
                         музыку, занимаюсь спортом и немного киберспортсмен.
@@ -26,12 +26,12 @@ export function AboutMe() {
                         to="https://github.com/MaksimKurkov"
                         target="_blank"
                     >
-                        <button className="aboutMe__button link">Github</button>
+                        <button className="about-me__button link">Github</button>
                     </Link>
                 </div>
                 <img
-                    className="aboutMe__img"
-                    src={AboutMeImage}
+                    className="about-me__img"
+                    src={aboutMeImage}
                     alt="Личное фото"
                 />
             </div>

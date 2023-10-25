@@ -1,53 +1,53 @@
 import logo from '../../images/HeaderLogo.svg';
 import { Link } from 'react-router-dom';
-import '../SignIn/SignIn.css';
+import './SignIn.css';
 
 export function SignIn() {
     return (
         <main className='main'>
-            <section className="signIn">
+            <section className="sign-in">
                 <Link to="/">
-                    <img src={logo} alt="Логотип" className="signIn__logo" />
+                    <img src={logo} alt="Логотип" className="sign-in__logo" />
                 </Link>
-                <h1 className="signIn__title">Рады видеть!</h1>
-                <form method="post" className="signIn__form">
-                    <fieldset className="signIn__input-container">
-                        <p className="signIn__text">E-mail</p>
+                <h1 className="sign-in__title">Рады видеть!</h1>
+                <form method="post" className="sign-in__form">
+                    <fieldset className="sign-in__input-container">
+                        <p className="sign-in__text">E-mail</p>
                         <input
                             id="email"
                             type="email"
-                            className="signIn__input"
+                            className="sign-in__input"
                             autoComplete="off"
                             required
                             minLength="2"
                             maxLength="40"
                             name="email"
                         />
-                        <span id="error-email" className="signIn__error"></span>
+                        <span id="error-email" className="sign-in__error"></span>
                     </fieldset>
-                    <fieldset className="signIn__input-container">
-                        <p className="signIn__text">Пароль</p>
+                    <fieldset className="sign-in__input-container">
+                        <p className="sign-in__text">Пароль</p>
                         <input
                             id="password"
                             type="password"
-                            className="signIn__input"
+                            className="sign-in__input"
                             autoComplete="off"
                             required
                             minLength="2"
                             maxLength="200"
                             name="password"
                         />
-                        <span id="error-pass" className="signIn__error"></span>
+                        <span id="error-pass" className="sign-in__error"></span>
                     </fieldset>
-                    <button className="signIn__button link" type="submit">
+                    <button className="sign-in__button link" type="submit">
                         Войти
                     </button>
                 </form>
-                <p className="signIn__info">
+                <p className="sign-in__info">
                     Еще не зарегистрированы?{' '}
                     <Link
                         to="/signup"
-                        className="signIn__info signIn__info_color_blue link"
+                        className="sign-in__link"
                     >
                         Регистрация
                     </Link>

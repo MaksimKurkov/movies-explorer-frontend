@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import headerLogo from '../../images/HeaderLogo.svg';
 import buttonImg from '../../images/HeaderAuthImg.svg';
-import '../HeaderAuth/HeaderAuth.css';
+import './HeaderAuth.css';
 
 export function HeaderAuth({ burgerClick, auth }) {
     const location = useLocation();

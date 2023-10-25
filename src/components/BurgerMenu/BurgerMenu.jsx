@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../BurgerMenu/BurgerMenu.css';
+import './BurgerMenu.css';
 import buttonImg from '../../images/HeaderAuthImg.svg';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ export function BurgerMenu({ onClose, isOpen }) {
 
     return (
         <section
-            className={`burger popup_type_delete-confirmed ${
+            className={`burger ${
                 isOpen ? 'burger_opened' : ''
             }`}
             onClick={handlePopupClose}
@@ -89,7 +89,7 @@ export function BurgerMenu({ onClose, isOpen }) {
                         <li className="burger__item">
                             <Link
                                 to="/profile"
-                                className={`burger__button burger__button__type_profile link ${
+                                className={`burger__button burger__button_type_profile link ${
                                     profileLink ? 'burger__button-active' : ''
                                 }`}
                                 onClick={onClose}

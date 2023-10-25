@@ -1,8 +1,8 @@
-import '../CheckedMovieButton/CheckedMovieButton.css';
+import './CheckedMovieButton.css';
 export function CheckedMovieButton({ handleButtonClick }) {
     return (
         <button
-            className="checkedMovieButton link"
+            className="checked-movie-button link"
             onClick={handleButtonClick}
         ></button>
     );
