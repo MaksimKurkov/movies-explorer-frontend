@@ -4,7 +4,7 @@ import { FormCheckBox } from '../FormCheckBox/FormCheckBox';
 export function SearchForm({ isCheck, checkboxClick }) {
     return (
         <section className="search-form">
-            <form method="post" noValidate className="search-form__form">
+            <form method="post" className="search-form__form">
                 <fieldset className="search-form__input-container">
                     <input
                         id="movies"

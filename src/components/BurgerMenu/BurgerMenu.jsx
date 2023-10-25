@@ -53,7 +53,7 @@ export function BurgerMenu({ onClose, isOpen }) {
                             <Link
                                 to="/"
                                 className={`burger__button link ${
-                                    mainLink ? 'burger__button-active' : ''
+                                    mainLink ? 'burger__button_active' : ''
                                 }`}
                                 onClick={onClose}
                             >
@@ -64,7 +64,7 @@ export function BurgerMenu({ onClose, isOpen }) {
                             <Link
                                 to="/movies"
                                 className={`burger__button link ${
-                                    movieLink ? 'burger__button-active' : ''
+                                    movieLink ? 'burger__button_active' : ''
                                 }`}
                                 onClick={onClose}
                             >
@@ -76,7 +76,7 @@ export function BurgerMenu({ onClose, isOpen }) {
                                 to="/saved-movies"
                                 className={`burger__button link ${
                                     savedMovieLink
-                                        ? 'burger__button-active'
+                                        ? 'burger__button_active'
                                         : ''
                                 }`}
                                 onClick={onClose}
@@ -90,7 +90,7 @@ export function BurgerMenu({ onClose, isOpen }) {
                             <Link
                                 to="/profile"
                                 className={`burger__button burger__button_type_profile link ${
-                                    profileLink ? 'burger__button-active' : ''
+                                    profileLink ? 'burger__button_active' : ''
                                 }`}
                                 onClick={onClose}
                             >
