@@ -15,7 +15,7 @@ export function SignUp() {
                         <p className="sign-up__text">Имя</p>
                         <input
                             id="name"
-                            type="name"
+                            type="text"
                             className="sign-up__input"
                             autoComplete="off"
                             required
@@ -23,7 +23,7 @@ export function SignUp() {
                             maxLength="40"
                             name="name"
                         />
-                        <span id="error-email" className="sign-up__error"></span>
+                        <span id="error-name" className="sign-up__error"></span>
                     </fieldset>
                     <fieldset className="sign-up__input-container">
                         <p className="sign-up__text">E-mail</p>

@@ -20,11 +20,8 @@ export function SearchForm({ isCheck, checkboxClick }) {
                     <button className="search-form__button link" type="submit">
                         Поиск
                     </button>
-                    <FormCheckBox
-                        isCheck={isCheck}
-                        checkboxClick={checkboxClick}
-                    />
                 </fieldset>
+                <FormCheckBox isCheck={isCheck} checkboxClick={checkboxClick}/>
             </form>
         </section>
     );

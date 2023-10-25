@@ -3,9 +3,9 @@ import './Footer.css';
 export function Footer() {
     return (
         <footer className="footer">
-            <h3 className="footer__title">
+            <p className="footer__title">
                 Учебный проект Яндекс.Практикум х BeatFilm.
-            </h3>
+            </p>
             <ul className="footer__container">
                 <li className="footer__info">&copy; 2020</li>
                 <li className="footer__info">
