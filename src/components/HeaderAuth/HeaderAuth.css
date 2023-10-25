@@ -53,16 +53,23 @@
 .header__button-profile {
     padding: 0;
     border: none;
-    border-radius: 6px;
     width: 30px;
     height: 30px;
     border-radius: 6px;
     background-color: rgba(15, 65, 87, 1);
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header__button-profile_type_movies {
     background-color: rgba(49, 49, 49, 1);
+}
+
+.header__avatar {
+    width: 10px;
+    height: 10px;
 }
 
 .header__burger {

@@ -93,6 +93,14 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.burger__avatar {
+    width: 10px;
+    height: 10px;
 }
 
 .burger__button_active{

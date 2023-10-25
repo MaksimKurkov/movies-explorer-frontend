@@ -48,18 +48,18 @@ export function HeaderAuth({ burgerClick, auth }) {
                     </li>
                     <li className="header__item">
                         <Link to="/profile" className="header__button link">
-                            <button
+                            <div
                                 className={`header__button-profile ${
                                     auth
                                         ? 'header__button-profile_type_movies'
                                         : ''
                                 }`}
                             >
-                                <img
+                                <img className="header__avatar"
                                     src={buttonImg}
                                     alt="Кнопка личного кабинета пользователя"
                                 />
-                            </button>
+                            </div>
                         </Link>
                     </li>
                 </ul>

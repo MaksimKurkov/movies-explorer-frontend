@@ -22,12 +22,10 @@ export function AboutMe() {
                         попробовать себя еще в чем-то, выбрал Web-разработку.
                         kkkkkkkkkkgggggggg
                     </p>
-                    <Link
+                    <Link className="about-me__button link"
                         to="https://github.com/MaksimKurkov"
                         target="_blank"
-                    >
-                        <button className="about-me__button link">Github</button>
-                    </Link>
+                    >Github</Link>
                 </div>
                 <img
                     className="about-me__img"

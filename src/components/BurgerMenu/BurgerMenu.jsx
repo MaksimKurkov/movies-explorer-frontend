@@ -103,12 +103,12 @@ export function BurgerMenu({ onClose, isOpen }) {
                                 className="burger__button link"
                                 onClick={onClose}
                             >
-                                <button className="burger__button-profile">
-                                    <img
-                                        src={buttonImg}
-                                        alt="Кнопка личного кабинета пользователя"
-                                    />
-                                </button>
+                                <div className="burger__button-profile">
+                                <img className="burger__avatar"
+                                    src={buttonImg}
+                                    alt="Кнопка личного кабинета пользователя"
+                                />
+                            </div>
                             </Link>
                         </li>
                     </ul>

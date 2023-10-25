@@ -51,16 +51,8 @@
     cursor: pointer;
 }
 
-.portfolio__button {
-    background: url('../../images/PortfolioButton.svg') no-repeat;
-    background-color: transparent;
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: 29px;
-    height: 60px;
-    background-position: 4px 18px;
-    background-size: 20px 18px;
+.portfolio__strelka {
+    margin-right: 5px;
 }
 
 @media screen and (max-width: 768px) {
@@ -99,11 +91,16 @@
         line-height: 28px;
     }
 
-    .portfolio__button {
+    .portfolio__strelka {
+        margin-right: 5px;
         width: 18px;
-        height: 28px;
-        background-position: 4px 7px;
-        background-size: 10px 10px;
+    }
+
+    .portfolio__subtitle{
+        margin: 0;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
     }
 
 }
