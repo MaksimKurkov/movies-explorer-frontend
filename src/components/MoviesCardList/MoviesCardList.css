@@ -42,7 +42,6 @@
     }
 
     .movies-card-list__catalog {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     column-gap: 24px;
     row-gap: 33px;
     }
