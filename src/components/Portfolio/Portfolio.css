@@ -23,8 +23,6 @@
 .portfolio__link-container {
     border-bottom: #424242 1px solid;
     padding-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
     cursor: pointer;
 }
 
@@ -34,11 +32,17 @@
 
 .portfolio__link {
     margin: 0;
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.portfolio__subtitle{
+    margin: 0;
     font-weight: 400;
     font-size: 28.1px;
     line-height: 50px;
-    color: #FFF;
-    text-decoration: none;
 }
 
 .link:hover{
@@ -48,13 +52,15 @@
 }
 
 .portfolio__button {
-    background: url('../../images/PortfolioButton.svg') no-repeat center;
-    background-color: #202020;
+    background: url('../../images/PortfolioButton.svg') no-repeat;
+    background-color: transparent;
     border: none;
     margin: 0;
     padding: 0;
     width: 29px;
-    height: 58.5px;
+    height: 60px;
+    background-position: 4px 18px;
+    background-size: 20px 18px;
 }
 
 @media screen and (max-width: 768px) {
@@ -96,8 +102,8 @@
     .portfolio__button {
         width: 18px;
         height: 28px;
-        background-size: 12px;
-        background-position: top 23%;
+        background-position: 4px 7px;
+        background-size: 10px 10px;
     }
 
 }

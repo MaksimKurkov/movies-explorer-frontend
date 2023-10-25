@@ -8,7 +8,7 @@
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     justify-content: center;
     align-items: center;
     column-gap: 29px;
@@ -41,7 +41,6 @@
     }
 
     .moviesCardList__catalog {
-    grid-template-columns: repeat(auto-fill, minmax(342px, 1fr));
     column-gap: 24px;
     row-gap: 33px;
     }
@@ -52,7 +51,6 @@
         margin: 0 10px 60px 10px;
     }
     .moviesCardList__catalog {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         row-gap: 15px;
     }
 

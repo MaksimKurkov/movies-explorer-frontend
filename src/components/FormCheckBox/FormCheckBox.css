@@ -1,4 +1,4 @@
-.checkbox__container {
+.checkbox {
     padding-bottom: 43px;
     display: flex;
     align-self: flex-start;
@@ -53,7 +53,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .checkbox__container {
+    .checkbox {
             padding-bottom: 48px;
         }
     
@@ -76,7 +76,7 @@
 }
 
 @media screen and (max-width: 525px) {
-    .checkbox__container {
+    .checkbox {
         padding-bottom: 60px;
     }
 }

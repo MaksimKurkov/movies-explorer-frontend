@@ -1,3 +1,8 @@
+.main {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
 .notFound {
     margin: 0 auto;
     max-width: 400px;
@@ -26,6 +31,12 @@
     font-weight: 400px;
     font-size: 14px;
     line-height: 16.94px                                                    
+}
+
+.link:hover{
+    opacity: 0.8;
+    transition: opacity 0.1s ease-in-out;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 320px) {

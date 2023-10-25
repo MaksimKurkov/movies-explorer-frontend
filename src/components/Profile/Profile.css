@@ -1,3 +1,8 @@
+.main {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
 .profile {
     max-width: 410px;
     padding-top: 71px;
@@ -85,6 +90,8 @@
 }
 
 .profile__button-exit{
+    text-decoration: none;
+    text-align: center;
     margin-top: 16px;
     color: rgba(238, 52, 101, 1);
     font-weight: 500;

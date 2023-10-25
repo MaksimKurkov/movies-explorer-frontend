@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../AboutMe/AboutMe.css';
 import AboutMeImage from '../../images/AbouteMeImg.png';
 
@@ -5,7 +6,7 @@ export function AboutMe() {
     return (
         <section className="aboutMe">
             <div className="aboutMe__title-container">
-                <h3 className="aboutMe__title">Студент</h3>
+                <h2 className="aboutMe__title">Студент</h2>
             </div>
             <div className="aboutMe__content">
                 <div className="aboutMe__text-container">
@@ -21,7 +22,12 @@ export function AboutMe() {
                         попробовать себя еще в чем-то, выбрал Web-разработку.
                         kkkkkkkkkkgggggggg
                     </p>
-                    <button className="aboutMe__button">Github</button>
+                    <Link
+                        to="https://github.com/MaksimKurkov"
+                        target="_blank"
+                    >
+                        <button className="aboutMe__button link">Github</button>
+                    </Link>
                 </div>
                 <img
                     className="aboutMe__img"
