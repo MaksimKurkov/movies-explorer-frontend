@@ -13,7 +13,7 @@ import { Footer } from '../Footer/Footer';
 import { useCallback, useState } from 'react';
 
 function App() {
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
     const location = useLocation().pathname;
     const [burgerPopupOpen, setBurgerPopupOpen] = useState(false);
 

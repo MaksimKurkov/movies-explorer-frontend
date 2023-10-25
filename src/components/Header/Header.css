@@ -19,6 +19,7 @@
 }
 
 .header__button-signup {
+    text-decoration: none;
     margin: 0;
     padding: 0;
     border: none;
@@ -29,9 +30,19 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__text-signup {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
 }
 
 .header__button-signin {
+    text-decoration: none;
     margin: 0;
     padding: 0;
     border: none;
@@ -40,6 +51,12 @@
     color: #000;
     width: 76px;
     height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__text-signin {
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
@@ -56,12 +73,12 @@
         padding: 18px 14px;
     }
 
-    .header__button-signup {
+    .header__text-signup {
         max-width: 64px;
         font-size: 10px;
     }
 
-    .header__button-signin {
+    .header__text-signin {
         width: 54px;
         height: 26px;
         font-size: 10px;

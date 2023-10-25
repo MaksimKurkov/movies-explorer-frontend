@@ -9,13 +9,11 @@ function Header() {
                 <img className="header__logo" src={logo} alt="Логотип" />
             </Link>
             <div className="header__button-conteiner">
-                <Link to="/signup">
-                    <button className="header__button-signup">
-                        Регистрация
-                    </button>
+                <Link to="/signup" className="header__button-signup">
+                    <p className="header__text-signup">Регистрация</p>
                 </Link>
-                <Link to="/signin">
-                    <button className="header__button-signin">Войти</button>
+                <Link to="/signin" className="header__button-signin">
+                    <p className="header__text-signin">Войти</p>
                 </Link>
             </div>
         </header>
