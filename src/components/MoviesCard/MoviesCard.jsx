@@ -1,56 +1,63 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import {durationToHours} from "../../utils/Utils";
 import './MoviesCard.css';
-import cardImageTest from '../../images/CardTest.png';
-import { CheckedMovieButton } from '../CheckedMovieButton/CheckedMovieButton';
-import { SaveMovieButton } from '../SaveMovieButton/SaveMovieButton';
-import { DeleteMovieButton } from '../DeleteMovieButton/DeleteMovieButton';
-import { useState } from 'react';
 
-export function MoviesCard() {
-    const [isCheck, setIsCheck] = useState(false);
-    const location = useLocation();
-    const changeButton = location.pathname !== '/saved-movies';
+export default function MoviesCard({ movie,savedMovies, handleAddSubmit, handleDeleteSubmit, isSaved }) {
+    const [isLike, setIsLike] = useState(false);
+    useEffect(() => {
+        const isLiked = savedMovies.some((element => movie.id === element.movieId));
+        setIsLike(isLiked);
+    }, [savedMovies]);
 
-    function handleButtonClick() {
-        if (isCheck === true) {
-            setIsCheck(false);
+    function onClick() {
+        if (savedMovies.some(element => movie.id === element.movieId)) {
+            setIsLike(false)
+            handleAddSubmit(movie)
         } else {
-            setIsCheck(true);
+            setIsLike(true)
+            handleAddSubmit(movie)
         }
+        setIsLike(!isLike);
     }
 
     return (
         <li className="movies-card">
             <article className="movies-card__content">
                 <div className="movies-card__title-container">
-                    <Link className="movies-card__title">
-                        В погоне за Бенкси
-                    </Link>
-                    <p className="movies-card__duration">0ч 42м</p>
+                    <h2 className="movies-card__title">{movie.nameRU}</h2>
+                    <span className="movies-card__duration">{durationToHours(movie.duration)}</span>
                 </div>
                 <div className="movies-card__container">
-                    <Link>
+                    <Link to={movie.trailerLink} target='_blank'>
                         <img
-                            src={cardImageTest}
+                            src={
+                                !isSaved ?
+                                    `https://api.nomoreparties.co${movie.image.url}` :
+                                    movie.image
+                            }
                             alt="Изображение фильма"
                             className="movies-card__image"
                         />
                     </Link>
-                    {changeButton ? (
-                        isCheck ? (
-                            <CheckedMovieButton
-                                handleButtonClick={handleButtonClick}
-                            />
-                        ) : (
-                            <SaveMovieButton
-                                handleButtonClick={handleButtonClick}
-                            />
-                        )
+                    {isSaved ? (
+                        <button className="movies__delete-button"
+                            onClick={() => handleDeleteSubmit(movie._id)}
+                        />
                     ) : (
-                        <DeleteMovieButton />
+                        <button
+                            className={
+                                !isLike
+                                    ? `movies__save-button`
+                                    : `movies__saved-button`
+                            }
+                            type="button"
+                            aria-label="Значок лайк"
+                            onClick={onClick}
+                        >Сохранить</button>
                     )}
                 </div>
-            </article>
+            </article >
         </li>
-    );
+    )
 }
