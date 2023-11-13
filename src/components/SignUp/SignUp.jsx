@@ -67,6 +67,7 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
 
     };
     useEffect(() => {
+        setIsWarning(false)
         validateForm()
         validateButton()
     }, [inputValues]);
@@ -133,8 +134,8 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
                             </span>
                             <button
                                 type="submit"
-                                className={`sign-up__button link ${!isValid ? "sign-up__button_disabled" : ''}`}
-                                disabled={!isValid}
+                                className={`sign-up__button link ${!isValid || isWarning ? "sign-up__button_disabled" : ''}`}
+                                disabled={!isValid || isWarning}
                             > 
                                 Зарегистрироваться
                             </button>

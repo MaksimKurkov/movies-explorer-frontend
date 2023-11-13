@@ -5,7 +5,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext/CurrentUse
 import { validationConfig } from '../../utils/Constans.js';
 
 
-export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, burgerClick }) {
+export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, burgerClick, setIsSuccess, isSuccess}) {
     const currentUser = useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name);
     const [email, setEmail] = useState(currentUser.email);
@@ -40,6 +40,7 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
         const value = target.value;
         setName(value);
         validateForm();
+        setIsSuccess("");
     }
 
     function handleEmailChange(evt) {
@@ -47,6 +48,7 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
         const value = target.value;
         setEmail(value);
         validateForm();
+        setIsSuccess("");
     }
 
     const handleSubmit = (evt) => {
@@ -54,15 +56,16 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
         validateForm() 
         setIsWarning(false)
         handleUpdateUser({ name, email })
-        console.log("handleSubmit");
         setIsChanging(false);
     };
 
     function changeStatus() {
+        setIsSuccess("");
         setIsChanging(true);
     }
 
     useEffect(() => {
+        setIsSuccess("");
         validateForm()
     }, [name, email]);
 
@@ -72,7 +75,8 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
             <main className="main">
                 <section className="profile">
                     <h1 className="profile__user-name">{`Привет, ${currentUser.name}!`}</h1>
-                    <form className={`profile__form ${isChanging ? "profile__form_change" : ''}`} name="form-profile" noValidate onSubmit={handleSubmit}>
+                    <form className="profile__form"  name="form-profile" noValidate onSubmit={handleSubmit}>
+                        <div className="profile__input-content">
                         <fieldset className="profile__input-container">
                             <label className="profile__input-name">Имя</label>
                             {!isChanging ? (
@@ -108,11 +112,17 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
                                 required 
                             /> 
                             )}
-                        </fieldset>  
-                        <span className="profile__input-error">{errorEmail}</span>
-                        <span className={`profile__errors ${!isWarning ? '' : 'profile__errors_active'}`}>
-                            { validationConfig.updateProfileErrorMessage || validationConfig.uniqueMailInvalidMessage}
-                        </span>
+                        </fieldset>
+                        <span className="profile__input-error">{errorEmail}</span>  
+                        </div>
+                        <div className='profile__global-errors'>
+                            <span className={`profile__errors ${!isWarning ? '' : 'profile__errors_active'}`}>
+                                { validationConfig.updateProfileErrorMessage || validationConfig.uniqueMailInvalidMessage}
+                            </span>
+                            < span className=" profile__errors profile__errors_success">
+                                    {isSuccess}
+                            </span>
+                        </div>
                         <div className={`${isChanging ? "profile__save" : 'profile__save_hide'}`}>
                             <button
                                     type="submit"

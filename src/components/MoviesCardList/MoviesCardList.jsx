@@ -6,7 +6,7 @@ import { useResize } from "../../utils/Utils";
 import Preloader from "../Preloader/Preloader";
 
 
-export default function MoviesCardList({ isSaved, filterMovies, handleAddSubmit, handleDeleteSubmit, savedMovies, setSavedMovies, isLoading, firstSearch }) {
+export default function MoviesCardList({ isSaved, filterMovies, handleAddSubmit, handleDeleteSubmit, savedMovies, setSavedMovies, isLoading, firstSearch, firstSearcSaved}) {
     const { width } = useResize();
     const [page, setPage] = useState(1);
 
@@ -67,7 +67,8 @@ export default function MoviesCardList({ isSaved, filterMovies, handleAddSubmit,
                         }
 
                     </ul>
-                ) : firstSearch ? (<div className="movies-card-list__error">Ничего не найдено</div>) : ('')
+                ) : !firstSearch ? (<p className="movies-card-list__error">Ничего не найдено</p>
+                ) : firstSearcSaved ? (<p className="movies-card-list__error">Нет сохраненных фильмов</p>) : ('')
             }
                 {
                     page < filterMovies.length && (

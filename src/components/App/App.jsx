@@ -29,12 +29,13 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [isCheck, setIsCheck] = useState(true)
   const [isWarning, setIsWarning] = useState(false);
+  const [isSuccess, setIsSuccess] = useState("");
 
   useEffect(() => {
     loggedIn &&
       Promise.all([MainApi.getUserInfo(localStorage.token), MainApi.getMovie(localStorage.token)])
         .then(([dataUser, dataMovies]) => {
-          setCurrentUser(dataUser)
+          setCurrentUser(dataUser);
           setSavedMovies(dataMovies);
           setLoggedIn(true);
           setIsCheck(false);
@@ -117,12 +118,14 @@ function App() {
     .setUserInfo(data, localStorage.token)
     .then((data) => {
       setCurrentUser(data)
+      setIsSuccess("Профиль успешно обновлен.");
       setIsWarning(false)
       setLoggedIn(true);
     })
     .catch((error) => {
       console.error(`Ошибка отправка формы с юзер данными (аватар) ${error}`)
       setIsWarning(true)
+      setIsSuccess("")
     })
   }
 
@@ -234,7 +237,9 @@ function App() {
             setIsWarning={setIsWarning}
             burgerClick={handleBurgerPopupClick}
             onClose={closeAllPopups}
-            isOpen={burgerPopupOpen} 
+            isOpen={burgerPopupOpen}
+            isSuccess={isSuccess} 
+            setIsSuccess={setIsSuccess}
           />} 
           />
 
@@ -247,7 +252,6 @@ function App() {
         <BurgerMenu onClose={closeAllPopups} isOpen={burgerPopupOpen} />
       </div >
       }
-      
     </CurrentUserContext.Provider>
     </div>
   )

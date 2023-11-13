@@ -113,7 +113,6 @@ class MainApi {
 
 }
 
-
 const apiMain = new MainApi({
     baseUrl: 'https://api.kurkov.movie.nomoredomainsrocks.ru',
 });

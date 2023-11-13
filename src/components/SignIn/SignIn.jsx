@@ -50,6 +50,7 @@ export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning }) {
         setInputValues({ ...inputValues, [name]: value });
     };
     useEffect(() => {
+        setIsWarning(false)
         validateForm()
         validateButton()
     }, [inputValues]);
@@ -100,8 +101,8 @@ export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning }) {
                         </span>
                         <button 
                             type="submit"
-                            className={`sign-in__button link ${!isValid ? "sign-in__button_disabled" : ''}`}
-                            disabled={!isValid}
+                            className={`sign-in__button link ${!isValid || isWarning ? "sign-in__button_disabled" : ''}`}
+                            disabled={!isValid || isWarning}
                         > 
                             Войти
                         </button>

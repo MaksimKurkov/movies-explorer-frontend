@@ -8,7 +8,7 @@ export function SavedMovies({ savedMovies, setSavedFilteredMovies, handleAddSubm
   const [filterMovies, setFilterMovies] = useState(savedMovies)
   const [isSearch, setIsSearch] = useState("");
   const [isCheck, setIsCheck] = useState(false);
-  const [firstSearch, setFirstSearch] = useState(true)
+  const [firstSearcSaved, setFirstSearchSaved] = useState(true)
 
   const filtredMovie = ((isSearch, isCheck, savedMovies) => {
     setIsSearch(isSearch)
@@ -31,11 +31,11 @@ export function SavedMovies({ savedMovies, setSavedFilteredMovies, handleAddSubm
   function changeCheck() {
     if (isCheck) {
       setIsCheck(false)
-      setFirstSearch(false)
+
       filtredMovie(isSearch, false, savedMovies)
     } else {
       setIsCheck(true)
-      setFirstSearch(false)
+
       filtredMovie(isSearch, true, savedMovies)
     }
   }
@@ -66,7 +66,7 @@ export function SavedMovies({ savedMovies, setSavedFilteredMovies, handleAddSubm
           isSaved={true}
           savedMovies={savedMovies}
           setSavedMovies={setSavedMovies}
-          firstSearch={firstSearch}
+          firstSearcSaved={firstSearcSaved}
         />
       </main>
     </>

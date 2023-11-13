@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {durationToHours} from "../../utils/Utils";
 import './MoviesCard.css';
 
-export default function MoviesCard({ movie,savedMovies, handleAddSubmit, handleDeleteSubmit, isSaved }) {
+export default function MoviesCard({ movie, savedMovies, handleAddSubmit, handleDeleteSubmit, isSaved }) {
     const [isLike, setIsLike] = useState(false);
     useEffect(() => {
         const isLiked = savedMovies.some((element => movie.id === element.movieId));

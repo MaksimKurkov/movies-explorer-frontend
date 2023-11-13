@@ -12,7 +12,7 @@ export function Movies({savedMovies, handleAddSubmit, burgerClick}) {
   const [isSearch, setIsSearch] = useState("");
   const [isCheck, setIsCheck] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
-  const [firstSearch, setFirstSearch] = useState(false)
+  const [firstSearch, setFirstSearch] = useState(true)
   const [loadingError, setLoadingError] = useState(false)
 
   const filtredMovie = ((search, isCheck, allmovies) => {
@@ -27,7 +27,6 @@ export function Movies({savedMovies, handleAddSubmit, burgerClick}) {
     }))
   })
 
-
   // функция для отрисовки фильмов
   function searchFilms(search) {
     if (allMovies.length === 0) {
@@ -36,7 +35,7 @@ export function Movies({savedMovies, handleAddSubmit, burgerClick}) {
         .then((res) => {
           setAllMovies(res);
           setIsCheck(false)
-          setFirstSearch(true)
+          setFirstSearch(false)
           setLoadingError(false)
           filtredMovie(search, isCheck, res)
         })
@@ -50,7 +49,6 @@ export function Movies({savedMovies, handleAddSubmit, burgerClick}) {
   };
 
   useEffect(() => {
-
     if (localStorage.allmovies && localStorage.search && localStorage.check) {
       const allmovies = JSON.parse(localStorage.getItem("allmovies"));
       const search = JSON.parse(localStorage.getItem("search"));
@@ -63,7 +61,6 @@ export function Movies({savedMovies, handleAddSubmit, burgerClick}) {
       filtredMovie(search, isCheck, allmovies)
     }
   }, []);
-
 
   function changeCheck() {
     if (isCheck) {

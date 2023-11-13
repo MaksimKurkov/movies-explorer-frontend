@@ -22,12 +22,17 @@
 
 .profile__form{
     width: 100%;
-    margin: 0 0 205px;
+    margin: 0;
 }
 
 .profile__form_change{
     margin: 0 0 0 0;
 }
+
+.profile__input-content{
+    margin: 0 0 195px;
+}
+
 
 .profile__input-container{
     width: 100%;
@@ -91,9 +96,16 @@
     border-radius: 1px;
 }
 
+.profile__global-errors {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 10px 0;
+}
+
 .profile__errors {
     display: none;
-    margin: 0 auto 0 auto;
     color: rgba(255, 0, 76, 1);
     font-weight: 400;
     font-size: 11px;
@@ -104,9 +116,14 @@
     display: block;
 }
 
+.profile__errors_success {
+    display: block;
+    color: rgba(255, 255, 255, 1);
+}
+
 .profile__save {
     display: block;
-    margin: 195px 0 0 0;
+    margin: 0;
 }
 
 .profile__save_hide {
@@ -180,14 +197,10 @@
         margin: 0 0 94px 0;
     }
 
-    .profile__form {
-        margin: 0 0 195px;
+    .profile__input-content{
+        margin: 0 0 185px;
     }
 
-    .profile__save {
-        display: block;
-        margin: 185px 0 0 0;
-    }
 }
 
 @media screen and (max-width: 450px) {
@@ -206,13 +219,8 @@
         margin: 0 0 78px 0;
     }
 
-    .profile__form {
-        margin: 0 0 363px;
-    }
-
-    .profile__save {
-        display: block;
-        margin: 353px 0 0 0;
+    .profile__input-content{
+        margin: 0 0 353px;
     }
     
     .button {
