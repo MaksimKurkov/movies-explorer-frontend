@@ -18,7 +18,7 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
         const errors = {};
         if (inputValues.name.length === 0) {
             errors.name = ''
-        } else if (!/^[а-яА-ЯёЁa-zA-Z\\s\\-]+$/.test(inputValues.name)) {
+        } else if (!/^[а-яА-ЯёЁa-zA-Z\s\-]+$/.test(inputValues.name)) {
             errors.name = validationConfig.nameRegExInvalidMessage;
         } else if ((inputValues.name.length < validationConfig.nameMinLength) || (inputValues.name.length > validationConfig.nameMaxLength)) {
             errors.name = validationConfig.nameLengthInvalidMesssage;
@@ -39,7 +39,7 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
 
 
     function validateButton() {
-        if ((inputValues.name.length === 0) || (inputValues.name.length < 2) || (!/^[а-яА-ЯёЁa-zA-Z\\s\\-]+$/.test(inputValues.name))) {
+        if ((inputValues.name.length === 0) || (inputValues.name.length < 2) || (!/^[а-яА-ЯёЁa-zA-Z\s\\-]+$/.test(inputValues.name))) {
             setIsValid(false);
             return
         } else {

@@ -10,6 +10,7 @@ import { SavedMovies } from '../SavedMovies/SavedMovies';
 import { Profile } from "../Profile/Profile";
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { Footer } from '../Footer/Footer';
+import Preloader from '../Preloader/Preloader';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext/CurrentUserContext';
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import MainApi from "../../utils/MainApi";
@@ -26,8 +27,7 @@ function App() {
 
   // стейт загрузки
   const [savedMovies, setSavedMovies] = useState([]);
-
-
+  const [isCheck, setIsCheck] = useState(true)
   const [isWarning, setIsWarning] = useState(false);
 
   useEffect(() => {
@@ -37,9 +37,11 @@ function App() {
           setCurrentUser(dataUser)
           setSavedMovies(dataMovies);
           setLoggedIn(true);
+          setIsCheck(false);
         })
         .catch((error) => {
           console.error(`Ошибка при начальных данный страницы ${error}`);
+          setIsCheck(false);
           localStorage.clear()
         })
   }, [loggedIn]);
@@ -53,11 +55,13 @@ function App() {
   const getTokenCheck = (token) => {
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
-      setLoggedIn(true)
+      setLoggedIn(true);
+      setIsCheck(false);
     }
     else {
-      setLoggedIn(false)
-      localStorage.clear()
+      setLoggedIn(false);
+      setIsCheck(false);
+      localStorage.clear();
     }
   }
 
@@ -121,7 +125,7 @@ function App() {
       setIsWarning(true)
     })
   }
-  
+
   //Функция удаления
   function handleDeleteSubmit(deleteId) {
     MainApi
@@ -174,7 +178,8 @@ function App() {
   return (
     <div className='body'>
       <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
+        {isCheck ? <Preloader /> :
+        <div className="page">
         <Routes>
           <Route path="/" element={<Main 
             loggedIn={loggedIn} 
@@ -241,6 +246,8 @@ function App() {
         }
         <BurgerMenu onClose={closeAllPopups} isOpen={burgerPopupOpen} />
       </div >
+      }
+      
     </CurrentUserContext.Provider>
     </div>
   )

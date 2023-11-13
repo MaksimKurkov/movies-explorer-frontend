@@ -17,7 +17,7 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
     const validateForm = () => {
         if (name.length < 2) {
             setErrorName(validationConfig.nameLengthInvalidMesssage)
-        } else if (!/^[а-яА-ЯёЁa-zA-Z\\s\\-]+$/.test(name)) {
+        } else if (!/^[а-яА-ЯёЁa-zA-Z\s\\-]+$/.test(name)) {
             setErrorName(validationConfig.nameRegExInvalidMessage)
         } else {
             setErrorName('')
@@ -27,7 +27,7 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
         } else {
             setErrorEmail('')
         }
-        if ((name.length < 2) || (!/^[а-яА-ЯёЁa-zA-Z\\s\\-]+$/.test(name)) || 
+        if ((name.length < 2) || (!/^[а-яА-ЯёЁa-zA-Z\s\\-]+$/.test(name)) || 
             (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) || ((name === currentUser.name) && (email === currentUser.email))) {
             setIsValid(false)
         } else {
