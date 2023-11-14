@@ -13,6 +13,7 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
     });
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
+    const [disableSubmitBtn, setDisableSubmitBtn] = useState(false);
 
     const validateForm = () => {
         const errors = {};
@@ -70,13 +71,15 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
         setIsWarning(false)
         validateForm()
         validateButton()
+        setDisableSubmitBtn(false);
     }, [inputValues]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setIsValid(validateForm())
+        setDisableSubmitBtn(true);
+        setIsValid(validateForm());
         setErrors(validateForm());
-        setIsWarning(false)
+        setIsWarning(false);
         onRegister(inputValues.name, inputValues.email, inputValues.password)
     };
 
@@ -135,7 +138,7 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
                             <button
                                 type="submit"
                                 className={`sign-up__button link ${!isValid || isWarning ? "sign-up__button_disabled" : ''}`}
-                                disabled={!isValid || isWarning}
+                                disabled={!isValid || isWarning || disableSubmitBtn}
                             > 
                                 Зарегистрироваться
                             </button>

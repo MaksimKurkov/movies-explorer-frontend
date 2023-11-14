@@ -4,7 +4,6 @@ import { HeaderAuth } from '../HeaderAuth/HeaderAuth.jsx';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext/CurrentUserContext.js"
 import { validationConfig } from '../../utils/Constans.js';
 
-
 export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, burgerClick, setIsSuccess, isSuccess}) {
     const currentUser = useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name);
@@ -66,7 +65,7 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
 
     useEffect(() => {
         setIsSuccess("");
-        validateForm()
+        validateForm();
     }, [name, email]);
 
     return (

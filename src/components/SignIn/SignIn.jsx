@@ -11,6 +11,7 @@ export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning }) {
     });
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
+    const [disableSubmitBtn, setDisableSubmitBtn] = useState(false);
 
     const validateForm = () => {
         const errors = {};
@@ -50,17 +51,19 @@ export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning }) {
         setInputValues({ ...inputValues, [name]: value });
     };
     useEffect(() => {
-        setIsWarning(false)
-        validateForm()
-        validateButton()
+        setIsWarning(false);
+        setDisableSubmitBtn(false);
+        validateForm();
+        validateButton();
     }, [inputValues]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setIsValid(validateForm())
+        setIsValid(validateForm());
         setErrors(validateForm());
-        setIsWarning(false)
-        onLogin(inputValues.email, inputValues.password)
+        setDisableSubmitBtn(true);
+        setIsWarning(false);
+        onLogin(inputValues.email, inputValues.password);
     };
 
     useEffect(() => {
@@ -102,7 +105,7 @@ export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning }) {
                         <button 
                             type="submit"
                             className={`sign-in__button link ${!isValid || isWarning ? "sign-in__button_disabled" : ''}`}
-                            disabled={!isValid || isWarning}
+                            disabled={!isValid || isWarning || disableSubmitBtn}
                         > 
                             Войти
                         </button>
