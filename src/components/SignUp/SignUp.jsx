@@ -67,6 +67,7 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
         setInputValues({ ...inputValues, [name]: value });
 
     };
+    
     useEffect(() => {
         setIsWarning(false)
         validateForm()

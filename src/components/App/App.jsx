@@ -240,7 +240,6 @@ function App() {
             isOpen={burgerPopupOpen}
             isSuccess={isSuccess} 
             setIsSuccess={setIsSuccess}
-            currentUser={currentUser}
           />} 
           />
 

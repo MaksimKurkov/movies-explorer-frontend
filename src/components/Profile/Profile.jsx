@@ -12,6 +12,7 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
     const [errorEmail, setErrorEmail] = useState('');
     const [isValid, setIsValid] = useState(true);
     const [isChanging, setIsChanging] = useState(false);
+    const [disableSubmitBtn, setDisableSubmitBtn] = useState(false);
 
     const validateForm = () => {
         if (name.length < 2) {
@@ -56,6 +57,7 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
         setIsWarning(false)
         handleUpdateUser({ name, email })
         setIsChanging(false);
+        setDisableSubmitBtn(true);
     };
 
     function changeStatus() {
@@ -64,6 +66,8 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
     }
 
     useEffect(() => {
+        setIsWarning(false);
+        setDisableSubmitBtn(false);
         setIsSuccess("");
         validateForm();
     }, [name, email]);
@@ -125,8 +129,8 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
                         <div className={`${isChanging ? "profile__save" : 'profile__save_hide'}`}>
                             <button
                                     type="submit"
-                                    className={`profile__save-button link ${!isValid ? "profile__save-button_disabled" : ''}`}
-                                    disabled={!isValid}
+                                    className={`profile__save-button link ${!isValid || disableSubmitBtn ? "profile__save-button_disabled" : ''}`}
+                                    disabled={!isValid || isWarning || disableSubmitBtn}
                             > 
                                 Сохранить
                             </button>
