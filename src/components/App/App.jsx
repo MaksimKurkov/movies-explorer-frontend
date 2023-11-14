@@ -84,7 +84,6 @@ function App() {
       })
   }
 
-
   function handleRegister(name, email, password) {
     setIsFetchingFromForm(true);
     MainApi
@@ -135,33 +134,22 @@ function App() {
   function handleDeleteSubmit(deleteId) {
     MainApi
       .deleteMovie(deleteId, localStorage.token)
-      .then(() => {
-        setSavedMovies(savedMovies.filter(movie => {
-          return movie._id !== deleteId
-        }))
+      .then((res) => {
+        const newMovies = savedMovies.filter((newMovie) => 
+          newMovie._id !== deleteId
+        );
+        setSavedMovies(newMovies);
       })
       .catch((error) => console.error(`Ошибка удаления ${error}`));
   }
 
   //функция добавления карточки
   function handleAddSubmit(data) {
-    const add = savedMovies.some(element => data.id === element.movieId)
-    const seachMovie = savedMovies.find((movie) => {
-      return movie.movieId === data.id
-    })
-
-    if (add) {
-      handleDeleteSubmit(seachMovie._id);
-
-    } else {
-      MainApi
-        .addMovie(data, localStorage.token)
-        .then(res => {
+      MainApi.addMovie(data, localStorage.token)
+        .then((res) => {
           setSavedMovies([res, ...savedMovies])
-          console.log("добавления карточки успешно");
         })
         .catch((error) => console.error(`Ошибка лайка ${error}`));
-    }
   }
 
   function handleBurgerPopupClick() {
@@ -213,6 +201,7 @@ function App() {
             element={Movies}
             loggedIn={loggedIn}
             handleAddSubmit={handleAddSubmit}
+            handleDeleteSubmit={handleDeleteSubmit}
             savedMovies={savedMovies}
             setSavedMovies={setSavedMovies}
             burgerClick={handleBurgerPopupClick}
@@ -223,7 +212,6 @@ function App() {
           <Route path="/saved-movies" element={<ProtectedRouteElement
             element={SavedMovies}
             loggedIn={loggedIn}
-            handleAddSubmit={handleAddSubmit}
             handleDeleteSubmit={handleDeleteSubmit}
             savedMovies={savedMovies}
             setSavedMovies={setSavedMovies}
@@ -247,7 +235,6 @@ function App() {
             isFetching={isFetchingFromForm}
           />} 
           />
-
         </Routes>
         {
           (location === "/" ||

@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import {durationToHours} from "../../utils/Utils";
 import './MoviesCard.css';
+import { useLocation } from "react-router-dom";
 
-export default function MoviesCard({ movie, savedMovies, handleAddSubmit, handleDeleteSubmit, isSaved }) {
-    const [isLike, setIsLike] = useState(false);
-    useEffect(() => {
-        const isLiked = savedMovies.some((element => movie.id === element.movieId));
-        setIsLike(isLiked);
-    }, [savedMovies]);
+export default function MoviesCard({ movie, savedMovies, handleAddSubmit, handleDeleteSubmit }) {
+    const isSaved = savedMovies.some((i) => i.movieId === movie.id);
+    const movieSavedButtonClassName = `${isSaved ? 'movies__saved-button' : 'movies__save-button'}`;
+    const {pathname} = useLocation();
 
-    function onClick() {
-        if (savedMovies.some(element => movie.id === element.movieId)) {
-            setIsLike(false)
-            handleAddSubmit(movie)
+    function handleMovieSaved() {
+        if (isSaved) {
+            var _movie = savedMovies.find(item => item.movieId === movie.id)
+            handleDeleteSubmit(_movie._id);
         } else {
-            setIsLike(true)
-            handleAddSubmit(movie)
+            handleAddSubmit(movie);
         }
-        setIsLike(!isLike);
+    }
+
+    function handleMovieDelete() {
+        handleDeleteSubmit(movie._id)
     }
 
     return (
@@ -31,30 +31,28 @@ export default function MoviesCard({ movie, savedMovies, handleAddSubmit, handle
                 <div className="movies-card__container">
                     <Link to={movie.trailerLink} target='_blank'>
                         <img
-                            src={
-                                !isSaved ?
-                                    `https://api.nomoreparties.co${movie.image.url}` :
-                                    movie.image
-                            }
+                            src={pathname === "/movies" ? 
+                            `https://api.nomoreparties.co${movie.image.url}` :
+                            movie.image
+                        }
                             alt="Изображение фильма"
                             className="movies-card__image"
                         />
                     </Link>
-                    {isSaved ? (
-                        <button className="movies__delete-button"
-                            onClick={() => handleDeleteSubmit(movie._id)}
-                        />
-                    ) : (
+                    {pathname === "/movies" ? (
                         <button
-                            className={
-                                !isLike
-                                    ? `movies__save-button`
-                                    : `movies__saved-button`
-                            }
-                            type="button"
-                            aria-label="Значок лайк"
-                            onClick={onClick}
-                        >Сохранить</button>
+                        className={movieSavedButtonClassName}
+                        type="button"
+                        onClick={handleMovieSaved}
+                    >
+                        Сохранить
+                    </button>
+                    ) : (
+                    <button 
+                        className="movies__delete-button"
+                        type="button"
+                        onClick={() => handleMovieDelete(movie._id)}
+                    /> 
                     )}
                 </div>
             </article >

@@ -63,7 +63,6 @@ export function SavedMovies({ savedMovies, setSavedFilteredMovies, handleAddSubm
           filterMovies={filterMovies}
           handleDeleteSubmit={handleDeleteSubmit}
           handleAddSubmit={handleAddSubmit}
-          isSaved={true}
           savedMovies={savedMovies}
           setSavedMovies={setSavedMovies}
           firstSearcSaved={firstSearcSaved}

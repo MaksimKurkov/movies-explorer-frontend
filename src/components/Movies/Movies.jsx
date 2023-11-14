@@ -6,7 +6,7 @@ import { HeaderAuth } from '../HeaderAuth/HeaderAuth';
 import MoviesApi from "../../utils/MoviesApi";
 import { shortFilms } from '../../utils/Constans';
 
-export function Movies({savedMovies, handleAddSubmit, burgerClick}) {
+export function Movies({savedMovies, handleAddSubmit, burgerClick, handleDeleteSubmit}) {
   const [allMovies, setAllMovies] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]);
   const [isSearch, setIsSearch] = useState("");
@@ -89,6 +89,7 @@ export function Movies({savedMovies, handleAddSubmit, burgerClick}) {
           filterMovies={filterMovies}
           savedMovies={savedMovies}
           handleAddSubmit={handleAddSubmit}
+          handleDeleteSubmit={handleDeleteSubmit}
           loadingError={loadingError}
           firstSearch={firstSearch}
           isLoading={isLoading}
