@@ -24,7 +24,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   // стейт бокового меню
   const [burgerPopupOpen, setBurgerPopupOpen] = useState(false);
-
+  const [isFetchingFromForm, setIsFetchingFromForm] = useState(false);
   // стейт загрузки
   const [savedMovies, setSavedMovies] = useState([]);
   const [isCheck, setIsCheck] = useState(true)
@@ -47,7 +47,6 @@ function App() {
         })
   }, [loggedIn]);
 
-
   //проверка токена
   useEffect(() => {
     getTokenCheck();
@@ -68,40 +67,39 @@ function App() {
 
   //функция авторизации
   function handleLogin(email, password) {
+    setIsFetchingFromForm(true);
     MainApi.authorize(email, password)
       .then((res) => {
-        localStorage.setItem('token', res.token)
-        setLoggedIn(true)
+        localStorage.setItem('token', res.token);
+        setCurrentUser(res);
+        setLoggedIn(true);
         navigate('/movies', { replace: true });
       })
       .catch((error) => {
         console.error(`Ошибка при авторизации ${error}`)
         setIsWarning(true)
       })
+      .finally(() => {
+        setIsFetchingFromForm(false);
+      })
   }
 
 
   function handleRegister(name, email, password) {
+    setIsFetchingFromForm(true);
     MainApi
     .register(name, email, password)
     .then((res) => {
       if (res) {
-        setLoggedIn(false)
-        MainApi.authorize(email, password)
-          .then(res => {
-            localStorage.setItem('token', res.token)
-            setLoggedIn(true)
-            navigate('/movies')
-          })
-          .catch((error) => {
-            console.error(`Ошибка при регистрации ${error}`)
-            setIsWarning(true)
-          })
+          handleLogin(email, password)
       }
     })
     .catch((error) => {
       console.error(`Ошибка при регистрации ${error}`)
       setIsWarning(true)
+    })
+    .finally(() => {
+      setIsFetchingFromForm(false);
     })
   }
 
@@ -114,18 +112,22 @@ function App() {
 
   //функция отображения данных Edit(описание)
   function handleUpdateUser(data) {
+    setIsFetchingFromForm(true);
     MainApi
     .setUserInfo(data, localStorage.token)
     .then((data) => {
       setCurrentUser(data)
       setIsSuccess("Профиль успешно обновлен.");
-      setIsWarning(false)
+      setIsWarning(false);
       setLoggedIn(true);
     })
     .catch((error) => {
       console.error(`Ошибка отправка формы с юзер данными (аватар) ${error}`)
       setIsWarning(true)
       setIsSuccess("")
+    })
+    .finally(() => {
+      setIsFetchingFromForm(false);
     })
   }
 
@@ -195,14 +197,16 @@ function App() {
             onRegister={handleRegister} 
             checkedLoggedIn={checkedLoggedIn} 
             isWarning={isWarning} 
-            setIsWarning={setIsWarning} 
+            setIsWarning={setIsWarning}
+            isFetching={isFetchingFromForm} 
           />} 
           />
           <Route path="/signin" element={<SignIn 
             onLogin={handleLogin} 
             checkedLoggedIn={checkedLoggedIn} 
             isWarning={isWarning} 
-            setIsWarning={setIsWarning} 
+            setIsWarning={setIsWarning}
+            isFetching={isFetchingFromForm} 
           />} />
           <Route path="/*" element={<NotFound />} />
           <Route path="/movies" element={<ProtectedRouteElement
@@ -240,6 +244,7 @@ function App() {
             isOpen={burgerPopupOpen}
             isSuccess={isSuccess} 
             setIsSuccess={setIsSuccess}
+            isFetching={isFetchingFromForm}
           />} 
           />
 
@@ -259,4 +264,3 @@ function App() {
 
 
 export default App;
-

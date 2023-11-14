@@ -4,7 +4,7 @@ import logo from '../../images/HeaderLogo.svg';
 import './SignIn.css';
 import {validationConfig} from "../../utils/Constans"
 
-export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning }) {
+export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning, isFetching }) {
     const [inputValues, setInputValues] = useState({
         email: '',
         password: '',
@@ -85,6 +85,7 @@ export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning }) {
                                 className="sign-in__input"
                                 value={inputValues.email || ""}
                                 onChange={inputOnChange}
+                                readOnly={isFetching}
                                 required />
                             <span className={`sign-in__error ${errors.email ? 'sign-in__error_active' : ''}`}>{errors.email}
                             </span>
@@ -95,6 +96,7 @@ export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning }) {
                                 className="sign-in__input"
                                 value={inputValues.password || ""}
                                 onChange={inputOnChange}
+                                readOnly={isFetching}
                                 required />
                             <span className={`sign-in__error ${errors.password ? 'sign-in__error_active' : ''}`}>{errors.password}
                             </span>
@@ -104,10 +106,10 @@ export function SignIn({ onLogin, isWarning, checkedLoggedIn, setIsWarning }) {
                         </span>
                         <button 
                             type="submit"
-                            className={`sign-in__button link ${!isValid || isWarning ? "sign-in__button_disabled" : ''}`}
-                            disabled={!isValid || isWarning || disableSubmitBtn}
+                            className={`sign-in__button link ${!isValid || isWarning || (disableSubmitBtn && !isFetching) ? "sign-in__button_disabled" : ''}`}
+                            disabled={!isValid || isWarning || isFetching || disableSubmitBtn}
                         > 
-                            Войти
+                            {isFetching ? "Вход..." : "Войти"}
                         </button>
                     </form>
                         <p className="sign-in__info">

@@ -21,8 +21,6 @@ class MainApi {
             .then(this._checkResponse)
     }
 
-
-    
     authorize(email, password) {
         console.log("authorize");
         return fetch(`${this._url}/signin`, {
@@ -105,7 +103,6 @@ class MainApi {
             method: 'DELETE',
             headers: {
                 "Authorization": `Bearer ${token}`
-            
             }
         })
             .then(this._checkResponse)
@@ -114,8 +111,8 @@ class MainApi {
 }
 
 const apiMain = new MainApi({
-    //baseUrl: 'http://localhost:3000',
-    baseUrl: 'https://api.kurkov.movie.nomoredomainsrocks.ru',
+    baseUrl: 'http://localhost:3000',
+    //baseUrl: 'https://api.kurkov.movie.nomoredomainsrocks.ru',
 });
 
 export default apiMain

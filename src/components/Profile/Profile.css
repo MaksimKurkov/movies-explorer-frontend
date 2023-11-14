@@ -71,10 +71,6 @@
     display: block;
 }
 
-.profile__input_hide{
-    display: none;
-}
-
 .profile__input-error {
     margin: 0 auto 0 auto;
     font-weight: 400;

@@ -5,7 +5,7 @@ import logo from '../../images/HeaderLogo.svg';
 import {validationConfig} from "../../utils/Constans"
 import './SignUp.css';
 
-export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning }) {
+export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning, isFetching }) {
     const [inputValues, setInputValues] = useState({
         name: '',
         email: '',
@@ -67,7 +67,7 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
         setInputValues({ ...inputValues, [name]: value });
 
     };
-    
+
     useEffect(() => {
         setIsWarning(false)
         validateForm()
@@ -107,10 +107,10 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
                                     value={inputValues.name || ""}
                                     onChange={inputOnChange}
                                     required
+                                    readOnly={isFetching}
                                 />
                                 <span className="sign-up__error">{errors.name}</span>
                             </fieldset>
-
                             <fieldset className="sign-up__input-container">
                                 <label className="sign-up__text">E-mail</label>
                                 <input id="email" type="email" placeholder="Введите email" name="email"
@@ -118,6 +118,7 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
                                     value={inputValues.email || ""}
                                     onChange={inputOnChange}
                                     required
+                                    readOnly={isFetching}
                                 />
                                 <span className="sign-up__error">{errors.email}</span>
                             </fieldset>
@@ -130,6 +131,7 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
                                     value={inputValues.password || ""}
                                     onChange={inputOnChange}
                                     required
+                                    readOnly={isFetching}
                                 />
                                 <span className="sign-up__error">{errors.password}</span>
                             </fieldset>
@@ -138,10 +140,10 @@ export function SignUp({ onRegister, isWarning, checkedLoggedIn, setIsWarning })
                             </span>
                             <button
                                 type="submit"
-                                className={`sign-up__button link ${!isValid || isWarning ? "sign-up__button_disabled" : ''}`}
-                                disabled={!isValid || isWarning || disableSubmitBtn}
+                                className={`sign-up__button link ${!isValid || isWarning || (disableSubmitBtn && !isFetching) ? "sign-up__button_disabled" : ''}`}
+                                disabled={!isValid || isWarning || isFetching || disableSubmitBtn}
                             > 
-                                Зарегистрироваться
+                                {isFetching ? "Зарегистрироваться..." : "Зарегистрироваться"}
                             </button>
                         </form>
                         <p className="sign-up__info">

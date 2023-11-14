@@ -4,7 +4,7 @@ import { HeaderAuth } from '../HeaderAuth/HeaderAuth.jsx';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext/CurrentUserContext.js"
 import { validationConfig } from '../../utils/Constans.js';
 
-export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, burgerClick, setIsSuccess, isSuccess}) {
+export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, burgerClick, setIsSuccess, isSuccess, isFetching }) {
     const currentUser = useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name);
     const [email, setEmail] = useState(currentUser.email);
@@ -82,69 +82,63 @@ export function Profile({ signOut, handleUpdateUser, isWarning, setIsWarning, bu
                         <div className="profile__input-content">
                         <fieldset className="profile__input-container">
                             <label className="profile__input-name">Имя</label>
-                            {!isChanging ? (
-                                <input id="name" type="text" placeholder="" name="name"
+                            <input id="name" type="text" placeholder="" name="name"
                                 className="profile__input profile__input_type_border"
                                 value={name || ''}
-                                readOnly
-                                />
-                            ):(
-                                <input id="name" type="text" placeholder="" name="name"
-                                    className="profile__input profile__input_type_border"
-                                    value={name || ''}
-                                    onChange={handleNameChange}
-                                    required
-                                />
-                            )}
+                                onChange={handleNameChange}
+                                required
+                                readOnly={(!isChanging || isFetching)} 
+                            />
                         </fieldset>  
                         <span className="profile__input-error">{errorName}</span>  
                         <span className="profile__input-border"></span>  
                         <fieldset className="profile__input-container">
                             <label className="profile__input-name">E-mail</label>
-                            {!isChanging ? (
-                                <input id="email" type="email" placeholder=" " name="email"
-                                    className="profile__input"
-                                    value={email || ''}
-                                    readOnly
-                                />
-                            ) : (
-                                <input id="email" type="email" placeholder=" " name="email"
+                            <input id="email" type="email" placeholder=" " name="email"
                                 className="profile__input"
                                 value={email || ''}
                                 onChange={handleEmailChange}
-                                required 
+                                required
+                                readOnly={(!isChanging || isFetching)} 
                             /> 
-                            )}
                         </fieldset>
                         <span className="profile__input-error">{errorEmail}</span>  
                         </div>
                         <div className='profile__global-errors'>
-                            <span className={`profile__errors ${!isWarning ? '' : 'profile__errors_active'}`}>
+                            <span className={`profile__errors ${isWarning && !isChanging? 'profile__errors_active' : ''}`}>
                                 { validationConfig.updateProfileErrorMessage || validationConfig.uniqueMailInvalidMessage}
                             </span>
-                            < span className=" profile__errors profile__errors_success">
+                            < span className={`profile__errors ${!isWarning && !isChanging? 'profile__errors_success' : ''}`}>
                                     {isSuccess}
                             </span>
                         </div>
-                        <div className={`${isChanging ? "profile__save" : 'profile__save_hide'}`}>
+                        {(isChanging || isFetching ) ? (
+                            <div className="profile__save">
                             <button
                                     type="submit"
                                     className={`profile__save-button link ${!isValid || disableSubmitBtn ? "profile__save-button_disabled" : ''}`}
-                                    disabled={!isValid || isWarning || disableSubmitBtn}
+                                    disabled={!isValid || isWarning || disableSubmitBtn || isFetching}
                             > 
-                                Сохранить
+                                {isFetching ? "Сохранение..." : "Сохранить"}
                             </button>
                         </div>
+                        ) : ('')
+                        }
                     </form>
-                    <button 
-                        className={`button profile__button-edit link ${isChanging ? "profile__button-edit_hide" : ''}`}
-                        onClick={changeStatus}
-                    >
-                         Редактировать
-                    </button>
-                    <button className={`button profile__button-exit link ${isChanging ? "profile__button-exit_hide" : ''}`} onClick={signOut} > 
-                        Выйти из аккаунта
-                    </button>
+                    {(isChanging || isFetching ) ? ('') : (
+                    <>
+                        <button 
+                            className="button profile__button-edit link"
+                            onClick={changeStatus}
+                        >
+                            Редактировать
+                        </button>
+                        <button className="button profile__button-exit link" onClick={signOut} > 
+                            Выйти из аккаунта
+                        </button>
+                    </>
+                    )}
+                    
                 </section>
             </main>
         </>
