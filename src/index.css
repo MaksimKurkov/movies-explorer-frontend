@@ -1,11 +1,12 @@
-/*connect Normalize*/
 @import url(./vendor/normalize.css);
+@import url(./fonts/font.css);
 
-/*background-color HTML*/
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html,
 #root {
   background-color: #202020;
 }
-
-/*connect fonts*/
-@import url(./vendor/fonts/fonts.css);

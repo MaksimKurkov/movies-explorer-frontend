@@ -2,12 +2,13 @@
     padding-bottom: 43px;
     display: flex;
     align-self: flex-start;
-    cursor: pointer;
+    
     transition: opacity .3s linear;
 }
 
 .checkbox__input-container {
     position: relative;
+    cursor: pointer;
 }
 
 .checkbox__title {

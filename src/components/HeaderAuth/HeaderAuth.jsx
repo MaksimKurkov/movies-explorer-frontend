@@ -1,61 +1,48 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 import headerLogo from '../../images/HeaderLogo.svg';
 import buttonImg from '../../images/HeaderAuthImg.svg';
 import './HeaderAuth.css';
 
-export function HeaderAuth({ burgerClick, auth }) {
+export function HeaderAuth( {burgerClick} ) {
     const location = useLocation();
+    const mainLink = location.pathname === '/';
     const movieLink = location.pathname === '/movies';
     const savedmovieLink = location.pathname === '/saved-movies';
     const profileLink = location.pathname === '/profile';
     return (
-        <header className={`header ${auth ? 'header_type_movies' : ''}`}>
-            <Link to="/">
-                <img className="header__logo" src={headerLogo} alt="Логотип" />
+        <header className={`header-auth ${mainLink ? 'header-auth_main' : ''}`} >
+            <Link to="/" rel=''>
+                <img className="header-auth__logo" src={headerLogo} alt="Логотип" />
             </Link>
-            <button className="header__burger" onClick={burgerClick}></button>
-            <nav className="header__nav-bar">
-                <ul className="header__list">
-                    <li className="header__item">
+            <button className="header-auth__burger" onClick={burgerClick}></button>
+            <nav className="header-auth__nav-bar">
+                <ul className="header-auth__list">
+                    <li className="header-auth__item">
                         <Link
                             to="/movies"
-                            className={`header__button link ${
-                                movieLink ? 'header__button-active' : ''
-                            }`}
+                            className={`header-auth__button link ${movieLink ? 'header-auth__button-active' : ''}`}
                         >
                             Фильмы
                         </Link>
                     </li>
-                    <li className="header__item">
+                    <li className="header-auth__item">
                         <Link
                             to="/saved-movies"
-                            className={`header__button link ${
-                                savedmovieLink ? 'header__button-active' : ''
-                            }`}
+                            className={`header-auth__button link ${savedmovieLink ? 'header-auth__button-active' : ''}`}
                         >
                             Сохранённые фильмы
                         </Link>
                     </li>
-                    <li className="header__item">
+                    <li className="header-auth__item">
                         <Link
                             to="/profile"
-                            className={`header__button link ${
-                                profileLink ? 'header__button-active' : ''
-                            }`}
+                            className={`header-auth__link link ${profileLink ? 'header-auth__link-active' : ''}`}
                         >
-                            Аккаунт
-                        </Link>
-                    </li>
-                    <li className="header__item">
-                        <Link to="/profile" className="header__button link">
+                            <p className="header-auth__link-text">Аккаунт</p>
                             <div
-                                className={`header__button-profile ${
-                                    auth
-                                        ? 'header__button-profile_type_movies'
-                                        : ''
-                                }`}
+                                className={`header-auth__profile ${mainLink ? 'header-auth__profile_main' : ''}`}
                             >
-                                <img className="header__avatar"
+                                <img className="header-auth__avatar"
                                     src={buttonImg}
                                     alt="Кнопка личного кабинета пользователя"
                                 />
@@ -64,6 +51,6 @@ export function HeaderAuth({ burgerClick, auth }) {
                     </li>
                 </ul>
             </nav>
-        </header>
+            </header >
     );
 }

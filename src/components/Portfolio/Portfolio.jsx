@@ -5,7 +5,7 @@ import  strelka  from '../../images/PortfolioButton.svg';
 export function Portfolio() {
     return (
         <section className="portfolio">
-            <h2 className="portfolio__title">Портфолио</h2>
+            <h3 className="portfolio__title">Портфолио</h3>
             <ul className="portfolio__container">
                 <li className="portfolio__link-container">
                     <Link
@@ -38,6 +38,6 @@ export function Portfolio() {
                     </Link>
                 </li>
             </ul>
-        </section>
-    );
+        </section >
+    )
 }

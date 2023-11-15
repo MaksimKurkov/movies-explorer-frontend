@@ -37,6 +37,14 @@
     padding: 0;
 }
 
+.sign-up__input-container_last {
+    margin-bottom: 175px;
+}
+
+.sign-up__input-container_error {
+    margin-bottom: 160px;
+}
+
 .sign-up__text {
     margin: 0 0 4.5px 0;
     color: rgba(139, 139, 139, 1);
@@ -59,8 +67,32 @@
     outline: none;
 }
 
+.sign-up__input_error {
+    color: rgba(238, 52, 101, 1);
+}
+
+.sign-up__error {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12.41px;
+    color: rgba(238, 52, 101, 1);
+}
+
+.sign-up__warning {
+    display: none;
+    margin: 0 auto 0 auto;
+    color: rgba(255, 0, 76, 1);
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13.34px;
+}
+
+.sign-up__warning_active {
+    display: block;
+}
+
 .sign-up__button {
-    margin: 128.5px 0 17px 0;
+    margin: 0 0 17px 0;
     padding: 0;
     width: 100%;
     min-height: 45px;
@@ -72,6 +104,12 @@
     border: none;
     border-radius: 3px;
 }
+
+.sign-up__button_disabled{
+    color: rgba(194, 194, 194, 1);
+    background-color: rgba(248, 248, 248, 1);
+}
+
 
 .sign-up__info {
     color: rgba(139, 139, 139, 1);

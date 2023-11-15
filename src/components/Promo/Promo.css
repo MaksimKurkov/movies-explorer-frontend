@@ -44,7 +44,7 @@
     color: #fff;
 }
 
-.link:hover {
+.promo__button:hover {
     opacity: 0.8;
     transition: opacity 0.1s ease-in-out;
     cursor: pointer;
