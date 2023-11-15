@@ -66,8 +66,14 @@ export default function MoviesCardList({ filterMovies, handleAddSubmit, handleDe
                         }
 
                     </ul>
-                ) : firstSearch ? (<p className="movies-card-list__error">Ничего не найдено</p>
-                ) : firstSearcSaved ? (<p className="movies-card-list__error">Нет сохраненных фильмов</p>) : ('')
+                ) : <div className="movies-card-list__container-error">
+                    {firstSearch ? 
+                    (<p className="movies-card-list__error">Ничего не найдено</p>
+                    ) : firstSearcSaved ? 
+                    (<p className="movies-card-list__error">Нет сохраненных фильмов</p>) 
+                    : ('')}
+                </div>
+                
             }
                 {
                     page < filterMovies.length && (
