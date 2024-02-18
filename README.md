@@ -4,7 +4,7 @@
 
 ### Структура проекта
 - [Movie (backend)](https://github.com/MaksimKurkov/movies-explorer-api)
-- Movie (frontend) 🔆 _этот репозиторий_
+- Movie (frontend)  _этот репозиторий_
 
 Технологический стек проекта:
 1. React
